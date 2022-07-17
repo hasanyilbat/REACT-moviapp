@@ -4,12 +4,11 @@ import {
   Button,
   Input,
   InputLabel,
-  FormHelperText,
-  Link,
 } from "@mui/material";
 const Register = () => {
   return (
-    <div className="d-flex m-auto">
+    <div className="d-flex m-auto container-fluid flex-raw">
+      <div className="row"></div>
       <div className="w-50">
         <img
           //   style={{ height: "600px" }}

@@ -1,0 +1,27 @@
+.card-body {
+  position: relative;
+}
+
+.overview {
+  position: absolute;
+  bottom: 122px;
+  line-height: 1.2rem;
+  left: 285px;
+  width: 260px;
+  /* display: none; */
+  color: white;
+  transition: all ease-in-out 0.7s;
+}
+
+/* .card {
+  transition: all ease 3s;
+} */
+
+.card:hover .overview {
+  background-color: rgba(12, 11, 11, 0.7);
+  /* position: absolute; */
+  /* display: block; */
+  /* left: 0.5rem; */
+  color: white;
+  transform: translateX(-276px);
+}

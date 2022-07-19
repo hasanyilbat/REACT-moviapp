@@ -7,7 +7,6 @@ import MovieCard from "../components/MovieCard";
 const Main = () => {
   const API_KEY = "681860e951e4d7ea32cea7ee3894af3d";
   const urlData = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`;
-  //   const forMovieDetails = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;
 
   const [movieData, setMovieData] = useState([]);
   const [movieName, setMovieName] = useState("");
@@ -46,23 +45,28 @@ const Main = () => {
   return (
     <div className="main-container ">
       <div className="mb-3 w-50 m-auto text-center d-flex justify-content-center mt-4">
-        <form onSubmit={handleSubmit} className="d-flex">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Search a movie..."
-            aria-describedby="basic-addon2"
-            style={{ width: "25rem" }}
-            onChange={(e) => setMovieName(e.target.value)}
-            value={movieName}
-          />
-          <div className="input-group-append">
-            <button
-              className="btn btn-outline-success btn-primary text-light mt-2"
-              type="submit"
-            >
-              Search
-            </button>
+        <form onSubmit={handleSubmit}>
+          <div className="d-flex justify-content-center align-items-center flex-raw">
+            <div>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Search a movie..."
+                aria-describedby="basic-addon2"
+                style={{ width: "25rem" }}
+                onChange={(e) => setMovieName(e.target.value)}
+                value={movieName}
+              />
+            </div>
+            <div className="input-group-append d-flex align-items-center justify-content-center ">
+              <button
+                className="btn btn-outline-success btn-primary text-light mt-2 d-inline "
+                type="submit"
+                style={{ height: "2.4rem", margin: "0 0 0.5rem 0.1rem" }}
+              >
+                Search
+              </button>
+            </div>
           </div>
         </form>
       </div>

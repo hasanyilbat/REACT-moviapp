@@ -1,12 +1,11 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const MovieDetail = () => {
-  const navigate = useNavigate();
   const { id } = useParams();
 
   const API_KEY = "681860e951e4d7ea32cea7ee3894af3d";

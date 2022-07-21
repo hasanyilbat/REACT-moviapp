@@ -2,6 +2,9 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import MovieCard from "../components/MovieCard";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { toastErrorNotify, toastWarnNotify } from "../helpers/ToastNotify";
 //! https://api.themoviedb.org/3/movie/550?api_key=681860e951e4d7ea32cea7ee3894af3d
 
 const Main = () => {
@@ -12,7 +15,7 @@ const Main = () => {
   const [movieName, setMovieName] = useState("");
   const [searchMovie, setSearchMovie] = useState("");
   const urlForSearch = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${movieName}`;
-
+  const currentUser = useContext(AuthContext);
   const getMovieData = async () => {
     try {
       const response = await axios.get(urlData);
@@ -34,7 +37,13 @@ const Main = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    getSearchMovie();
+    if (currentUser && movieName) {
+      getSearchMovie();
+    } else if (!currentUser) {
+      toastWarnNotify("Please log in to search a movie");
+    } else {
+      toastWarnNotify("please enter a text");
+    }
   };
 
   useEffect(() => {

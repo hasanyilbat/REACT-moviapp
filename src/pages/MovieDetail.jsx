@@ -18,11 +18,12 @@ const MovieDetail = () => {
     try {
       const response = await axios.get(videoUrl);
       setVideo(response.data.results);
+      console.log(video);
     } catch (error) {
       console.log(error);
     }
   };
-
+  console.log(video);
   const getMovieData = async () => {
     try {
       const response = await axios.get(forMovieDetails);
@@ -34,13 +35,16 @@ const MovieDetail = () => {
 
   useEffect(() => {
     getMovieData();
+  }, []);
+
+  useEffect(() => {
     videoData();
   }, []);
 
   console.log(getData);
   return (
     <div>
-      {getData.map((movie, index) => {
+      {getData.map((movie) => {
         const {
           title,
           poster_path,
@@ -52,17 +56,21 @@ const MovieDetail = () => {
 
         return (
           <div>
-            <h1 className="text-center" key={index}>
-              {title}
-            </h1>
-            {video[3].key && (
-              <div className="d-flex justify-content-center mt-4">
-                <ReactPlayer
-                  controls
-                  url={`https://www.youtube.com/watch?v=${video[3].key}`}
-                />
-              </div>
-            )}
+            <h1 className="text-center">{title}</h1>
+
+            {video.map((movie) => {
+              const { name, key } = movie;
+              return (
+                name === "Official Trailer" && (
+                  <div className="d-flex justify-content-center mt-4">
+                    <ReactPlayer
+                      controls
+                      url={`https://www.youtube.com/watch?v=${key}`}
+                    />
+                  </div>
+                )
+              );
+            })}
             <div className="container mt-4 d-flex">
               <img
                 className="w-50 p-4"
